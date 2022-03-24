@@ -84,7 +84,7 @@ function Button({ children, color, ...props }) {
   return (
     <Styled>
       {({ classes }) => (
-        <ButtonBase classes={{ root: classes.button }} {...props}>
+        <ButtonBase classes={{ root: classes.button }} {...props} disabled={false}>
           {children}
         </ButtonBase>
       )}

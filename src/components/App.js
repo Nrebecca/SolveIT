@@ -31,7 +31,7 @@ export default function App() {
     </HashRouter>
   );
 
-  // #######################################################################
+  // ########
 
   function PrivateRoute({ component, ...rest }) {
     return (

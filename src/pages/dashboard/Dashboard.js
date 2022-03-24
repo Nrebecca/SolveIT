@@ -302,25 +302,25 @@ export default function Dashboard(props) {
                   color="text"
                   colorBrightness="secondary"
                 >
-                  Daily Line Chart
+                  Daily Transactions
                 </Typography>
                 <div className={classes.mainChartHeaderLabels}>
                   <div className={classes.mainChartHeaderLabel}>
                     <Dot color="warning" />
                     <Typography className={classes.mainChartLegentElement}>
-                      Tablet
+                     Deposites
                     </Typography>
                   </div>
                   <div className={classes.mainChartHeaderLabel}>
                     <Dot color="primary" />
                     <Typography className={classes.mainChartLegentElement}>
-                      Mobile
+                      Transfers
                     </Typography>
                   </div>
                   <div className={classes.mainChartHeaderLabel}>
                     <Dot color="primary" />
                     <Typography className={classes.mainChartLegentElement}>
-                      Desktop
+                      withdrawings
                     </Typography>
                   </div>
                 </div>
@@ -364,14 +364,14 @@ export default function Dashboard(props) {
                 />
                 <Area
                   type="natural"
-                  dataKey="desktop"
+                  dataKey="withdrawings"
                   fill={theme.palette.background.light}
                   strokeWidth={0}
                   activeDot={false}
                 />
                 <Line
                   type="natural"
-                  dataKey="mobile"
+                  dataKey="Transfers"
                   stroke={theme.palette.primary.main}
                   strokeWidth={2}
                   dot={false}
@@ -379,7 +379,7 @@ export default function Dashboard(props) {
                 />
                 <Line
                   type="linear"
-                  dataKey="tablet"
+                  dataKey="deposits"
                   stroke={theme.palette.warning.main}
                   strokeWidth={2}
                   dot={{

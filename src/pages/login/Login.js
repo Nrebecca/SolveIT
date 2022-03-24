@@ -10,6 +10,7 @@ import {
   Fade,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
+import axios from 'axios'
 // styles
 import useStyles from "./styles";
 // context
@@ -17,6 +18,7 @@ import { useUserDispatch, loginUser } from "../../context/UserContext";
 
 function Login(props) {
   var classes = useStyles();
+
 
   // global
   var userDispatch = useUserDispatch();
@@ -26,9 +28,20 @@ function Login(props) {
   var [error, setError] = useState(null);
   var [activeTabId, setActiveTabId] = useState(0);
   var [nameValue, setNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("");
-  var [passwordValue, setPasswordValue] = useState("");
+  var [username, setUsername] = useState("");
+  var [password, setPassword] = useState("");
+  var [login, setLogin] = useState("");
 
+
+
+  const handleLogin = async () => {
+    const data = await axios.post('https://e-wallet-solvit.herokuapp.com/api/login', {
+      username,
+      password
+    });
+
+    console.log(data);
+  }
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
@@ -49,7 +62,7 @@ function Login(props) {
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>             
-              <Fade in={error}>
+              <Fade in= {error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
                 </Typography>
@@ -62,8 +75,7 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                onChange={e => setUsername(e.target.value)}
                 margin="normal"
                 placeholder="Email Adress"
                 type="email"
@@ -77,8 +89,8 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={passwordValue}
-                onChange={e => setPasswordValue(e.target.value)}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 margin="normal"
                 placeholder="Password"
                 type="password"
@@ -90,18 +102,9 @@ function Login(props) {
                 ) : (
                   <Button
                     disabled={
-                      loginValue.length === 0 || passwordValue.length === 0
+                      login.length === 0 || password.length === 0
                     }
-                    onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        loginValue,
-                        passwordValue,
-                        props.history,
-                        setIsLoading,
-                        setError,
-                      )
-                    }
+                    onClick={handleLogin}
                     variant="contained"
                     color="primary"
                     size="large"
@@ -137,26 +140,26 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={nameValue}
+                value={username}
                 onChange={e => setNameValue(e.target.value)}
                 margin="normal"
                 placeholder="Full Name"
-                type="email"
+                type="text"
                 fullWidth
               />
               <TextField
-                id="email"
+                id="name"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
                     input: classes.textField,
                   },
                 }}
-                value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                value={login}
+                onChange={e => setLogin(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
-                type="email"
+                placeholder="username"
+                type="text"
                 fullWidth
               />
               <TextField
@@ -167,8 +170,8 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={passwordValue}
-                onChange={e => setPasswordValue(e.target.value)}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 margin="normal"
                 placeholder="Password"
                 type="password"
@@ -182,16 +185,16 @@ function Login(props) {
                     onClick={() =>
                       loginUser(
                         userDispatch,
-                        loginValue,
-                        passwordValue,
+                        login,
+                        password,
                         props.history,
                         setIsLoading,
                         setError,
                       )
                     }
                     disabled={
-                      loginValue.length === 0 ||
-                      passwordValue.length === 0 ||
+                      login.length === 0 ||
+                      password.length === 0 ||
                       nameValue.length === 0
                     }
                     size="large"

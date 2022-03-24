@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Select, MenuItem, Input } from "@material-ui/core";
 import { ArrowForward as ArrowForwardIcon } from "@material-ui/icons";
-import { useTheme } from "@material-ui/styles";
+
 import { BarChart, Bar } from "recharts";
 import classnames from "classnames";
 
@@ -13,9 +13,9 @@ import Widget from "../../../../components/Widget";
 import { Typography } from "../../../../components/Wrappers";
 
 export default function BigStat(props) {
-  var { product, total, color, registrations, bounce } = props;
+  var { product, total,  registrations, bounce } = props;
   var classes = useStyles();
-  var theme = useTheme();
+  
 
   // local
   var [value, setValue] = useState("daily");
@@ -58,7 +58,7 @@ export default function BigStat(props) {
         <BarChart width={150} height={70} data={getRandomData()}>
           <Bar
             dataKey="value"
-            fill={theme.palette[color].main}
+           
             radius={10}
             barSize={10}
           />
@@ -75,7 +75,7 @@ export default function BigStat(props) {
             />
           </Grid>
           <Typography size="sm" color="text" colorBrightness="secondary">
-            Registrations
+           Transactions
           </Typography>
         </div>
         <div className={classes.statCell}>
@@ -88,7 +88,7 @@ export default function BigStat(props) {
             />
           </Grid>
           <Typography size="sm" color="text" colorBrightness="secondary">
-            Bounce Rate
+           Rate
           </Typography>
         </div>
         <div className={classnames(classes.statCell, classes.borderRight)}>
@@ -103,7 +103,7 @@ export default function BigStat(props) {
             />
           </Grid>
           <Typography size="sm" color="text" colorBrightness="secondary">
-            Views
+            users
           </Typography>
         </div>
       </div>
